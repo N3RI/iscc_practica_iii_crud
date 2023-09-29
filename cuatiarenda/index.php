@@ -80,8 +80,6 @@
             <th>Contacto</th>
             <th>Estado</th>
             <th>Tipo de Evento</th>
-            <th>Actualizar</th>
-            <th>Eliminar</th> 
  
         </tr>
         <tr>
@@ -114,8 +112,6 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fila['contacto'] . "</td>";
     echo "<td>" . $fila['estado'] . "</td>";
     echo "<td>" . $fila['tipo'] . "</td>";
-    echo "<td>" . "<form>" . "<button>" . "Actualizar" . "</button>" . "</form>" . "</td>";
-    echo "<td>" .  "<form>" . "<button>" . "Eliminar" . "</button>" . "</form>" .  "</td>";
     echo "</tr>";
 } echo "</table>";
 mysqli_close($conexion);
