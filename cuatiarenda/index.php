@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuatiarenda</title>
+    <title>Mi Biblioteca</title>
+
+    <!-- Enlace a Bootstrap desde el CDN de Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+
+    <!-- Enlace a Font Awesome para los íconos de redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- Tu archivo de estilo CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -70,7 +80,9 @@
             <th>Contacto</th>
             <th>Estado</th>
             <th>Tipo de Evento</th>
-            
+            <th>Actualizar</th>
+            <th>Eliminar</th> 
+ 
         </tr>
         <tr>
 
@@ -102,6 +114,8 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fila['contacto'] . "</td>";
     echo "<td>" . $fila['estado'] . "</td>";
     echo "<td>" . $fila['tipo'] . "</td>";
+    echo "<td>" . "<form>" . "<button>" . "Actualizar" . "</button>" . "</form>" . "</td>";
+    echo "<td>" .  "<form>" . "<button>" . "Eliminar" . "</button>" . "</form>" .  "</td>";
     echo "</tr>";
 } echo "</table>";
 mysqli_close($conexion);
@@ -183,6 +197,6 @@ mysqli_close($conexion);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-
 </body>
+
 </html>
