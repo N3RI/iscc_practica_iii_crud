@@ -1,0 +1,21 @@
+h5 {
+    margin-left: 20px;
+    font-family: 'Black Ops One', cursive;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-title-overlay {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    padding: 5px;
+}
+
