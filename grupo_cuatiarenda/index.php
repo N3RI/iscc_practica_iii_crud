@@ -149,52 +149,12 @@ mysqli_close($conexion);
                     <div class="col">
 						<label for="nuevo_nombre" class="form-label">Invitados</label>
 						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
-					</div>>
-							<input type="submit" name="create" value="Create">
+					</div>
+							<input type="submit" name="create" value="Crear">
 					</form>
 				</div>
 			</div>
 		</div>
-<div class="container mb-2 shadow">
-			<div class="row justify-content-center align-items-center g-2">
-				<div class="col">
-					<!-- Formulario para actualizar un usuario -->
-					<h2>Actualizar Usuario</h2>
-					<form action="actualizar.php" method="post" class="row g-3 mb-3">
-					<div class="col">
-						<label for="id_update" class="form-label">Nombre</label>
-						<input type="texto" name="id" id="id_update" class="form-control" required>
-					</div>
-                    <div class="col">
-						<label for="id_update" class="form-label">Fecha</label>
-						<input type="texto" name="id" id="id_update" class="form-control" required>
-					</div>
-                    <div class="col">
-						<label for="id_update" class="form-label">Hora</label>
-						<input type="texto" name="id" id="id_update" class="form-control" required>
-					</div>
-                    <div class="col">
-						<label for="id_update" class="form-label">Lugar</label>
-						<input type="texto" name="id" id="id_update" class="form-control" required>
-					</div>
-					<div class="col">
-						<label for="nuevo_nombre" class="form-label">Información</label>
-						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
-					</div>
-                    <div class="col">
-						<label for="nuevo_nombre" class="form-label">Categoría</label>
-						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
-					</div>
-                    <div class="col">
-						<label for="nuevo_nombre" class="form-label">Invitados</label>
-						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
-					</div>
-						<input type="submit" name="update" value="Actualizar">
-					</form>
-				</div>
-			</div>
-		</div>
-
  
     <div id="eventos" class="container">
         <div class="card mb-4 selectable-card cursor-pointer">
