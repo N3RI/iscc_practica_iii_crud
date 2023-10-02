@@ -62,6 +62,9 @@
 
     <div class="container mt-5">
         <h2>Lista de Canchas</h2>
+        
+        <a href="formulario_canchas.html" class="btn btn-primary">Ir al Formulario</a>
+        
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -140,7 +143,6 @@
         ?>
     </div>
 </div>
-
 
     <footer>
         <p class="text-center">&copy; 2023 F5Deportes. Todos los derechos reservados.</p>
