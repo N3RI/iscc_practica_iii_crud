@@ -1,27 +1,29 @@
 <?php
-// $conexion = mysqli_connect("localhost", "usuario", "contraseña", "base_de_datos");
-$conexion = mysqli_connect("localhost", "root", "", "base_de_datos");
+// Actualizar
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
+    $id = $_POST["id"];
+    $nuevoNombre = $_POST["nuevo_nombre"];
 
-if (mysqli_connect_errno()) {
-    die("La conexión a la base de datos falló: " . mysqli_connect_error());
+    // Validar la entrada
+    if (!empty($id) && !empty($nuevoNombre)) {
+        // Crear una declaración preparada
+        $stmt = $conexion->prepare("UPDATE usuarios SET nombre=? WHERE id=?");
+        $stmt->bind_param("si", $nuevoNombre, $id);
+
+        // Ejecutar la declaración preparada
+        if ($stmt->execute()) {
+            echo "Registro actualizado con éxito. \n";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        // Cerrar la declaración preparada
+        $stmt->close();
+    } else {
+        echo "Datos de entrada inválidos.";
+    }
 }
-
-// Actualizar un registro en la tabla 'usuarios'
-$id = 1;
-$nuevoNombre = "Nuevo Nombre";
-
-$consulta = "UPDATE usuarios SET nombre='$nuevoNombre' WHERE id=$id";
-$resultado = mysqli_query($conexion, $consulta);
-
-if ($resultado) {
-    echo "Registro actualizado con éxito";
-} else {
-    echo "Error: " . mysqli_error($conexion);
-}
-
-mysqli_close($conexion);
 ?>
-
 
 
 <!DOCTYPE html>
