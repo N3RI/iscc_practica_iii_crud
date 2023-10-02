@@ -12,7 +12,7 @@
     <div class="container mt-5">
         <h2>Formulario de Eventos</h2>
         <form action="enviar.php" method="POST">
-            <div class="form-group">
+        <div class="form-group">
                 <label for="nombre">Nombre del Evento:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
@@ -67,6 +67,38 @@
             <button type="submit" class="btn btn-primary">Guardar Evento</button>
         </form>
     </div>
+
+<?php
+include('db.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'];
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
+    $lugar = $_POST['lugar'];
+    $info = $_POST['info'];
+    $invitados = $_POST['invitados'];
+    $precio = $_POST['precio'];
+    $imagen = $_POST['imagen'];
+    $responsable = $_POST['responsable'];
+    $capacidad = $_POST['capacidad'];
+    $contacto = $_POST['contacto'];
+    $estado = $_POST['estado'];
+    $tipoEvento = $_POST['tipoEvento'];
+  
+    // Consulta SQL para insertar los datos en la tabla 'eventos'
+    $sql = "INSERT INTO eventos (nombre, fecha, hora, lugar, info, invitados, precio, imagen, responsable, capacidad, contacto, estado, tipoEvento) 
+            VALUES ('$nombre', '$fecha', '$hora', '$lugar', '$info', '$invitados', '$precio', '$imagen', '$responsable', '$capacidad', '$contacto', '$estado', '$tipoEvento')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Evento guardado exitosamente.";
+    } else {
+        echo "Error al guardar el evento: " . $conn->error;
+    }
+}
+$conn->close();
+?>
+
 </body>
 
 </html>

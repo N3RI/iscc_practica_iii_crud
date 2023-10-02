@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+}
+
+h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+.form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px;
+}
+.form {
+    max-width: 48%; /* Ajusta el ancho de los formularios según tus necesidades */
+    width: 100%;
+    display: inline-block;
+    margin-right: 2%; /* Espacio entre los formularios */
+    vertical-align: top; /* Alineación superior */
+}
+.form:last-child {
+    margin-right: 0; /* Elimina el margen derecho para el último formulario */
+}

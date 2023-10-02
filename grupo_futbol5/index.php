@@ -62,6 +62,7 @@
 
     <div class="container mt-5">
         <h2>Lista de Canchas</h2>
+        
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -107,6 +108,7 @@
                 ?>
             </tbody>
         </table>
+        <a href="formulario.html" class="btn btn-primary">Ir al Formulario</a>
     </div>
 
     <div class="container mt-5 p-4">
@@ -119,6 +121,10 @@
             ["img" => "img/img4.jpg", "titulo" => "LA ESTACIÓN", "enlace" => "laestacion.html"],
             ["img" => "img/img5.jpg", "titulo" => "LO DEL VIEJO", "enlace" => "lodelviejo.html"],
             ["img" => "img/img5.jpg", "titulo" => "TERCER TIEMPO", "enlace" => "tercertiempo.html"],
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 7d56f99e4cacdec0aa70b2739d5f561ca8696008
         ];
 
         foreach ($tarjetas as $tarjeta) {
@@ -139,7 +145,6 @@
         ?>
     </div>
 </div>
-
 
     <footer>
         <p class="text-center">&copy; 2023 F5Deportes. Todos los derechos reservados.</p>
