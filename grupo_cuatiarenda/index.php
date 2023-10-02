@@ -116,6 +116,29 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
 } echo "</table>";
 mysqli_close($conexion);
 ?> 
+<div class="container my-2 shadow">
+			<div class="row justify-content-center align-items-center g-2">
+				<div class="col">
+					<!-- Formulario para crear un usuario -->
+					<h2>Crear Usuario</h2>
+					<form action="crud.php" method="post" class="row g-3 mb-3">
+						<div class="col">
+							<label for="apellido" class="form-label">Apellido:</label>
+							<input type="text" name="apellido" id="apellido" class="form-control" required>
+						</div>
+						<div class="col">
+							<label for="nombre" class="form-label">Nombre:</label>
+							<input type="text" name="nombre" id="nombre" class="form-control" required>
+						</div>
+						<div class="col">
+							<label for="email" class="form-label">Correo Electrónico:</label>
+							<input type="email" name="email" id="email" class="form-control" required>
+						</div>
+							<input type="submit" name="create" value="Create">
+					</form>
+				</div>
+			</div>
+		</div>
 <div class="container mb-2 shadow">
 			<div class="row justify-content-center align-items-center g-2">
 				<div class="col">
