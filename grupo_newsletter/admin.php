@@ -21,16 +21,25 @@ echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
 while ($fila = mysqli_fetch_assoc($resultado)) {
-    echo "<tr>";
-    echo "<td>" . $fila['ID'] . "</td>";
-    echo "<td>" . $fila['nombre'] . "</td>";
-    echo "<td>" . $fila['apellido'] . "</td>";
-    echo "<td>" . $fila['dni'] . "</td>";
-    echo "<td>" . $fila['genero'] . "</td>";
-    echo "<td>" . $fila['email'] . "</td>";
-    echo "<td>" . $fila['carrera'] . "</td>";
-    echo "<td>" . $fila['estado'] . "</td>";
-    echo "<td>" . $fila['fecha'] . "</td>";
+    $id = $fila['ID'];
+    $nombre = $fila['nombre'];
+    $apellido = $fila['apellido'];
+    $dni = $fila['dni'];
+    $genero = $fila['genero'];
+    $email = $fila['email'];
+    $carrera = $fila['carrera'];
+    $estado = $fila['estado'];
+    $fecha = $fila['fecha'];
+    
+    echo "<td>" . $id . "</td>";
+    echo "<td>" . $nombre . "</td>";
+    echo "<td>" . $apellido . "</td>";
+    echo "<td>" . $dni . "</td>";
+    echo "<td>" . $genero . "</td>";
+    echo "<td>" . $email . "</td>";
+    echo "<td>" . $carrera . "</td>";
+    echo "<td>" . $estado . "</td>";
+    echo "<td>" . $fecha . "</td>";
     echo '<form action="actualizar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
     <td><button type="submit" class="btn btn-primary" name="update">Update</button></td>
