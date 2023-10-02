@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
 					<form action="actualizar.php" method="post" class="row g-3 mb-3">
 					<div class="col">
 						<label for="id_update" class="form-label">Nombre</label>
-						<input type="texto" name="id" id="id_update" class="form-control" required>
+						<input type="texto" name="id" id="id_update" class="form-control" required value="<?php echo$?>">
 					</div>
                     <div class="col">
 						<label for="id_update" class="form-label">Fecha</label>
