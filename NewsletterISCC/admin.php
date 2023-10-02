@@ -33,7 +33,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fila['fecha'] . "</td>";
     echo '<form action="actualizar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
-    <td><button type="submit" class="btn btn-primary" name="update">Editar</button></td>
+    <td><button type="submit" class="btn btn-primary" name="update">Update</button></td>
   </form>';
     echo '<form action="eliminar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
