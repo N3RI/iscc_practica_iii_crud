@@ -16,11 +16,6 @@
 
 require("config.php");
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-} else {
-    // Mostrar un mensaje de error o redirigir a una página de error si no se proporciona un ID válido.
-}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     $id = $_POST["id"];
