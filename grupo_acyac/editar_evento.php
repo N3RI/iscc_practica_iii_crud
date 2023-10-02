@@ -94,7 +94,7 @@
             // Cerrar la conexión a la base de datos
             $conn->close();
         } else {
-            echo "ID de evento no válido.";
+          
         }
 
         // Procesar la actualización cuando se envíe el formulario
