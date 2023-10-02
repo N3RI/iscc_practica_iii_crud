@@ -80,6 +80,8 @@
             <th>Contacto</th>
             <th>Estado</th>
             <th>Tipo de Evento</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
  
         </tr>
         <tr>
