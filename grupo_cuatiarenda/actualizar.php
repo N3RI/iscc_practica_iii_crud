@@ -2,7 +2,19 @@
 // Actualizar
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     $id = $_POST["id"];
-    $nuevoNombre = $_POST["nuevo_nombre"];
+    $nombre = $_POST["nombre"];
+    $fecha = $_POST["fecha"];
+    $lugar = $_POST["lugar"];
+    $informacion = $_POST["informacion"];
+    $categoria = $_POST["categoria"];
+    $precio = $_POST["precio"];
+    $imagen = $_POST["imagen"];
+    $responsable = $_POST["responsable"];
+    $capacidad = $_POST["capacidad"];
+    $contacto = $_POST["contacto"];
+    $estado = $_POST["nombre"];
+    $tipo = $_POST["tipo_de_evento"];
+    
 
     // Validar la entrada
     if (!empty($id) && !empty($nombre)) {
