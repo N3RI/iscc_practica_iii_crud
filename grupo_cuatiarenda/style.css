@@ -1,0 +1,137 @@
+body {
+    background-color: #94bad4; 
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2rem; 
+    margin-right: 20px; 
+    transition: text-shadow 0.3s; 
+}
+
+.navbar-nav .nav-link:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+    color: #007bff; 
+}
+
+
+.navbar-brand img {
+    max-width: 150px; 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 60px; 
+    margin-right: 10px; 
+}
+
+.logo-text {
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #333;
+}
+
+
+#carrusel {
+    margin-top: 20px; 
+    background-color: #f2e6d5; 
+    max-height: 1800px; 
+    margin-bottom: 20px; 
+}
+
+
+.carousel-inner img {
+    object-fit: cover; 
+    height: 500px;
+}
+
+.carousel-item{
+    
+    height: 500px;
+
+}
+
+.container {
+    padding: 40px 0;
+}
+
+.container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.container p {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+
+.card {
+    border: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+
+.selectable-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.selectable-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.social-icon {
+    font-size: 24px;
+}
+
+
+footer {
+    background-color: #f7f7f7;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-icons {
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    font-size: 32px;
+    margin: 0 15px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #0056b3; 
+}
+
+.footer-text {
+    font-size: 18px;
+    color: #555;
+}
