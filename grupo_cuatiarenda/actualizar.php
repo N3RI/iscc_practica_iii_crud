@@ -1,4 +1,29 @@
+<?php
+// Actualizar
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
+    $id = $_POST["id"];
+    $nuevoNombre = $_POST["nuevo_nombre"];
 
+    // Validar la entrada
+    if (!empty($id) && !empty($nuevoNombre)) {
+        // Crear una declaración preparada
+        $stmt = $conexion->prepare("UPDATE usuarios SET nombre=? WHERE id=?");
+        $stmt->bind_param("si", $nuevoNombre, $id);
+
+        // Ejecutar la declaración preparada
+        if ($stmt->execute()) {
+            echo "Registro actualizado con éxito. \n";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        // Cerrar la declaración preparada
+        $stmt->close();
+    } else {
+        echo "Datos de entrada inválidos.";
+    }
+}
+?>
 
 
 <!DOCTYPE html>
@@ -43,6 +68,34 @@
 					</div>
                     <div class="col">
 						<label for="nuevo_nombre" class="form-label">Invitados</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Precio</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Imagen</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Responsable</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Capacidad</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Contacto</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Estado</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Tipo de Evento</label>
 						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
 					</div>
 						<input type="submit" name="update" value="Actualizar">

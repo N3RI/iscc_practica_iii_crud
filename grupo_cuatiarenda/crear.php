@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crear Nuevo Eventos</title>
 </head>
 <body>
 <div class="container my-2 shadow">
@@ -46,6 +46,34 @@
 					</div>
                     <div class="col">
 						<label for="nuevo_nombre" class="form-label">Invitados</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Precio</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Imagen</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Responsable</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Capacidad</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Contacto</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Estado</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Tipo de Evento</label>
 						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
 					</div>
 							<input type="submit" name="create" value="Crear">
