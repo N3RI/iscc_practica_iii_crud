@@ -114,6 +114,8 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fila['contacto'] . "</td>";
     echo "<td>" . $fila['estado'] . "</td>";
     echo "<td>" . $fila['tipo'] . "</td>";
+    echo "<td>" . "<button>" . "Actualizar" . "</button>" . "</td>";
+    echo "<td>" . "<button>" . "Eliminar" . "</button>" . "</td>";
     echo "</tr>";
 } echo "</table>";
 mysqli_close($conexion);
