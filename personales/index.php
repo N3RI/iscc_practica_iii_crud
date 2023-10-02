@@ -23,7 +23,7 @@
 	<div class="row justify-content-center align-items-center g-2">
 		<h1>Proyectos Personales</h1>
 		<!-- Crear aquí un link a su carpeta personal en su nombre y apellido. La carpeta debe tener un nombre con este estilo apellido_nombre_2donombre -->
-		<div class="col">Apellido y Nombre</div>
+		<div class="col"> <a href="lopez_eduardo/index.html" target="_blank" rel="noopener noreferrer"></a> </div>
 		<div class="col">Apellido y Nombre</div>
 		<div class="col">Apellido y Nombre</div>
 		<div class="col">Apellido y Nombre</div>
