@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuatiarenda</title>
+    <title>Mi Biblioteca</title>
+
+    <!-- Enlace a Bootstrap desde el CDN de Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+
+    <!-- Enlace a Font Awesome para los íconos de redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- Tu archivo de estilo CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -70,7 +80,7 @@
             <th>Contacto</th>
             <th>Estado</th>
             <th>Tipo de Evento</th>
-            
+ 
         </tr>
         <tr>
 
@@ -106,6 +116,46 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
 } echo "</table>";
 mysqli_close($conexion);
 ?> 
+<div class="container mb-2 shadow">
+			<div class="row justify-content-center align-items-center g-2">
+				<div class="col">
+					<!-- Formulario para actualizar un usuario -->
+					<h2>Actualizar Usuario</h2>
+					<form action="actualizar.php" method="post" class="row g-3 mb-3">
+					<div class="col">
+						<label for="id_update" class="form-label">Nombre</label>
+						<input type="texto" name="id" id="id_update" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="id_update" class="form-label">Fecha</label>
+						<input type="texto" name="id" id="id_update" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="id_update" class="form-label">Hora</label>
+						<input type="texto" name="id" id="id_update" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="id_update" class="form-label">Lugar</label>
+						<input type="texto" name="id" id="id_update" class="form-control" required>
+					</div>
+					<div class="col">
+						<label for="nuevo_nombre" class="form-label">Información</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Categoría</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+                    <div class="col">
+						<label for="nuevo_nombre" class="form-label">Invitados</label>
+						<input type="text" name="nuevo_nombre" id="nuevo_nombre" class="form-control" required>
+					</div>
+						<input type="submit" name="update" value="Actualizar">
+					</form>
+				</div>
+			</div>
+		</div>
+
  
     <div id="eventos" class="container">
         <div class="card mb-4 selectable-card cursor-pointer">
@@ -183,6 +233,6 @@ mysqli_close($conexion);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-
 </body>
+
 </html>
