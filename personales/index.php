@@ -27,6 +27,11 @@
 		<div class="col">Apellido y Nombre</div>
 		<div class="col">Apellido y Nombre</div>
 		<div class="col">
+			<a href="lopez_eduardo/index.php" target="_blank">Lopez Eduardo</a>
+		</div>
+		<div class="col">Apellido y Nombre</div>
+		<div class="col">Apellido y Nombre</div>
+		<div class="col">
 			<a href="salinas_tomas/index.php"></a>
 		</div>
 		<div class="col">
