@@ -119,7 +119,6 @@
             ["img" => "img/img4.jpg", "titulo" => "LA ESTACIÓN", "enlace" => "laestacion.html"],
             ["img" => "img/img5.jpg", "titulo" => "LO DEL VIEJO", "enlace" => "lodelviejo.html"],
             ["img" => "img/img5.jpg", "titulo" => "TERCER TIEMPO", "enlace" => "tercertiempo.html"],
-            // Agrega más tarjetas según sea necesario
         ];
 
         foreach ($tarjetas as $tarjeta) {
