@@ -10,12 +10,7 @@
     <div class="container mt-5">
         <h2>Lista de Eventos</h2>
         <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "eventos";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
+         include('db.php');
 
         if ($conn->connect_error) {
             die("Error en la conexión: " . $conn->connect_error);
