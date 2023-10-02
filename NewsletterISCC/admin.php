@@ -31,7 +31,10 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fila['carrera'] . "</td>";
     echo "<td>" . $fila['estado'] . "</td>";
     echo "<td>" . $fila['fecha'] . "</td>";
-    echo '<td><a href="actualizar.php?id=' . $fila['ID'] . '" class="btn btn-primary">Editar</a></td>'; // Agregamos el botón de editar
+    echo '<form action="actualizar.php" method="post">
+    <input type="hidden" name="id" value="' . $fila['ID'] . '">
+    <td><button type="submit" class="btn btn-primary" name="update">Eliminar</button></td>
+  </form>';
     echo '<form action="eliminar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
     <td><button type="submit" class="btn btn-danger" name="delete">Eliminar</button></td>
