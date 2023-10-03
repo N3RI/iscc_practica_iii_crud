@@ -1,6 +1,32 @@
+<?php
+ // Crear (Insertar)
+ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["create"])) {
+	$apellido = $_POST["apellido"];
+	$nombre = $_POST["nombre"];
+	$email = $_POST["email"];
 
+    // Validar la entrada (puedes agregar más validaciones según sea necesario)
+    if (!empty($nombre) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  
+				// Crear una declaración preparada
+        $stmt = $conexion->prepare("INSERT INTO usuarios (apellido, nombre, email) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $apellido, $nombre, $email);
 
+        // Ejecutar la declaración preparada
+        if ($stmt->execute()) {
+            echo "Registro creado con éxito. \n";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
 
+        // Cerrar la declaración preparada
+        $stmt->close();
+    } else {
+        echo "Datos de entrada inválidos.";
+    }
+ }
+
+?>
 
 
 
