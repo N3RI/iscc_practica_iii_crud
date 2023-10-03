@@ -1,65 +1,84 @@
 <?php
-// $conexion = mysqli_connect("localhost", "usuario", "contraseña", "base_de_datos");
 $conexion = mysqli_connect("localhost", "root", "", "calendario");
 
 if (mysqli_connect_errno()) {
     die("La conexión a la base de datos falló: " . mysqli_connect_error());
 }
 
-$id = $nombre = $fecha = $hora = $lugar = $informacion = $categoria = $invitados = $precio = $imagen = $responsable = $capacidad = $contacto = $estado = $tipo_de_evento = "";
+$id = $nombre = $fecha = $hora = $lugar = $informacion = $categoria = $invitados = $precio = $imagen = $responsable = $capacidad = $contacto = $estado = $tipo = "";
 
-// Actualizar
-// Verifica si se envió una solicitud POST para actualizar
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
-    $id = $_POST["id"];
-    $nombre = $_POST["nombre"];
-    $fecha = $_POST["fecha"];
-    $hora = $_POST["hora"];
-    $lugar = $_POST["lugar"];
-    $informacion = $_POST["informacion"];
-    $categoria = $_POST["categoria"];
-    $invitados = $_POST["invitados"];
-    $precio = $_POST["precio"];
-    $imagen = $_POST["imagen"];
-    $responsable = $_POST["responsable"];
-    $capacidad = $_POST["capacidad"];
-    $contacto = $_POST["contacto"];
-    $estado = $_POST["estado"];
-    $tipo_de_evento = $_POST["tipo_de_evento"];
+// Verificar si se proporciona un ID válido en la URL
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
     
+    // Actualizar
+    // Verifica si se envió una solicitud POST para actualizar
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
+        $nombre = $_POST["nombre"];
+        $fecha = $_POST["fecha"];
+        $hora = $_POST["hora"];
+        $lugar = $_POST["lugar"];
+        $informacion = $_POST["informacion"];
+        $categoria = $_POST["categoria"];
+        $invitados = $_POST["invitados"];
+        $precio = $_POST["precio"];
+        $imagen = $_POST["imagen"];
+        $responsable = $_POST["responsable"];
+        $capacidad = $_POST["capacidad"];
+        $contacto = $_POST["contacto"];
+        $estado = $_POST["estado"];
+        $tipo = $_POST["tipo"];
 
-    $stmt = $conexion->prepare("SELECT * FROM eventos WHERE id = ?");
-    $stmt->bind_param("i", $id);
+        // Actualizar los datos del evento en la base de datos
+        $stmt = $conexion->prepare("UPDATE eventos SET nombre=?, fecha=?, hora=?, lugar=?, informacion=?, categoria=?, invitados=?, precio=?, imagen=?, responsable=?, capacidad=?, contacto=?, estado=?, tipo_de_evento=? WHERE id=?");
+        $stmt->bind_param("ssssssssssssssi", $nombre, $fecha, $hora, $lugar, $informacion, $categoria, $invitados, $precio, $imagen, $responsable, $capacidad, $contacto, $estado, $tipo, $id);
 
-    // Ejecutar la declaración preparada
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
-        if ($result->num_rows === 1) {
-            $row = $result->fetch_assoc();
-            // Asignar los valores de la base de datos a las variables
-            $nombre = $row["nombre"];
-            $fecha = $row["fecha"];
-            $hora = $row["hora"];
-            $lugar = $row["lugar"];
-            $informacion = $row["informacion"];
-            $categoria = $row["categoria"];
-            $invitados = $row["invitados"];
-            $precio = $row["precio"];
-            $imagen = $row["imagen"];
-            $responsable = $row["responsable"];
-            $capacidad = $row["capacidad"];
-            $contacto = $row["contacto"];
-            $estado = $row["estado"];
-            $tipo_de_evento = $row["tipo_de_evento"];
+        // Ejecutar la declaración preparada
+        if ($stmt->execute()) {
+            echo "Evento actualizado con éxito.";
         } else {
-            echo "No se encontró el evento con el ID proporcionado.";
+            echo "Error al actualizar el evento: " . $stmt->error;
         }
-    } else {
-        echo "Error al obtener datos del evento: " . $stmt->error;
-    }
 
-    // Cerrar la declaración preparada
-    $stmt->close();
+        // Cerrar la declaración preparada
+        $stmt->close();
+    } else {
+        // Obtener los datos del evento usando el ID de la URL
+        $stmt = $conexion->prepare("SELECT * FROM eventos WHERE id = ?");
+        $stmt->bind_param("i", $id);
+
+        // Ejecutar la declaración preparada
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            if ($result->num_rows === 1) {
+                $row = $result->fetch_assoc();
+                // Asignar los valores de la base de datos a las variables
+                $nombre = $row["nombre"];
+                $fecha = $row["fecha"];
+                $hora = $row["hora"];
+                $lugar = $row["lugar"];
+                $informacion = $row["informacion"];
+                $categoria = $row["categoria"];
+                $invitados = $row["invitados"];
+                $precio = $row["precio"];
+                $imagen = $row["imagen"];
+                $responsable = $row["responsable"];
+                $capacidad = $row["capacidad"];
+                $contacto = $row["contacto"];
+                $estado = $row["estado"];
+                $tipo= $row["tipo"];
+            } else {
+                echo "No se encontró el evento con el ID proporcionado.";
+            }
+        } else {
+            echo "Error al obtener datos del evento: " . $stmt->error;
+        }
+
+        // Cerrar la declaración preparada
+        $stmt->close();
+    }
+} else {
+    echo "No se proporcionó un ID válido en la URL.";
 }
 ?>
 
@@ -80,10 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
 					<!-- Formulario para actualizar un usuario -->
 					<h2>Actualizar Evento</h2>
 					<form action="actualizar.php" method="post" class="row g-3 mb-3">
-                    <div class="col">
-						<label for="id" class="form-label">Id</label>
-						<input type="hidden" name="id" id="id" class="form-control" required value="<?php echo $id?>">
-					</div>
+					<div class="col">
+                       <label for="id" class="form-label">ID del Evento</label>
+                       <input type="number" name="id" id="id" class="form-control" required value="<?php echo $id?>">
+                    </div>
 					<div class="col">
 						<label for="nombre" class="form-label">Nombre</label>
 						<input type="texto" name="nombre" id="nombre" class="form-control" required value="<?php echo $nombre?>">
@@ -137,8 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
 						<input type="text" name="estado" id="estado" class="form-control" required value="<?php echo $estado?>">
 					</div>
                     <div class="col">
-						<label for="tipo_de_evento" class="form-label">Tipo de Evento</label>
-						<input type="text" name="tipo_de_evento" id="tipo_de_evento" class="form-control" required value="<?php echo $tipo_de_evento?>">
+						<label for="tipo" class="form-label">Tipo de Evento</label>
+						<input type="text" name="tipo" id="tipo" class="form-control" required value="<?php echo $tipo?>">
 					</div>
 						<input type="submit" name="update" value="Actualizar">
 					</form>
