@@ -1,39 +1,65 @@
 <?php
+// $conexion = mysqli_connect("localhost", "usuario", "contraseña", "base_de_datos");
+$conexion = mysqli_connect("localhost", "root", "", "calendario");
+
+if (mysqli_connect_errno()) {
+    die("La conexión a la base de datos falló: " . mysqli_connect_error());
+}
+
+$id = $nombre = $fecha = $hora = $lugar = $informacion = $categoria = $invitados = $precio = $imagen = $responsable = $capacidad = $contacto = $estado = $tipo_de_evento = "";
+
 // Actualizar
+// Verifica si se envió una solicitud POST para actualizar
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     $id = $_POST["id"];
     $nombre = $_POST["nombre"];
     $fecha = $_POST["fecha"];
+    $hora = $_POST["hora"];
     $lugar = $_POST["lugar"];
     $informacion = $_POST["informacion"];
     $categoria = $_POST["categoria"];
+    $invitados = $_POST["invitados"];
     $precio = $_POST["precio"];
     $imagen = $_POST["imagen"];
     $responsable = $_POST["responsable"];
     $capacidad = $_POST["capacidad"];
     $contacto = $_POST["contacto"];
-    $estado = $_POST["nombre"];
-    $tipo = $_POST["tipo_de_evento"];
+    $estado = $_POST["estado"];
+    $tipo_de_evento = $_POST["tipo_de_evento"];
     
 
-    // Validar la entrada
-    if (!empty($id) && !empty($nombre)) {
-        // Crear una declaración preparada
-        $stmt = $conexion->prepare("UPDATE usuarios SET nombre=? WHERE id=?");
-        $stmt->bind_param("si", $nombre, $id);
+    $stmt = $conexion->prepare("SELECT * FROM eventos WHERE id = ?");
+    $stmt->bind_param("i", $id);
 
-        // Ejecutar la declaración preparada
-        if ($stmt->execute()) {
-            echo "Registro actualizado con éxito. \n";
+    // Ejecutar la declaración preparada
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+            // Asignar los valores de la base de datos a las variables
+            $nombre = $row["nombre"];
+            $fecha = $row["fecha"];
+            $hora = $row["hora"];
+            $lugar = $row["lugar"];
+            $informacion = $row["informacion"];
+            $categoria = $row["categoria"];
+            $invitados = $row["invitados"];
+            $precio = $row["precio"];
+            $imagen = $row["imagen"];
+            $responsable = $row["responsable"];
+            $capacidad = $row["capacidad"];
+            $contacto = $row["contacto"];
+            $estado = $row["estado"];
+            $tipo_de_evento = $row["tipo_de_evento"];
         } else {
-            echo "Error: " . $stmt->error;
+            echo "No se encontró el evento con el ID proporcionado.";
         }
-
-        // Cerrar la declaración preparada
-        $stmt->close();
     } else {
-        echo "Datos de entrada inválidos.";
+        echo "Error al obtener datos del evento: " . $stmt->error;
     }
+
+    // Cerrar la declaración preparada
+    $stmt->close();
 }
 ?>
 
@@ -54,60 +80,64 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
 					<!-- Formulario para actualizar un usuario -->
 					<h2>Actualizar Evento</h2>
 					<form action="actualizar.php" method="post" class="row g-3 mb-3">
+                    <div class="col">
+						<label for="id" class="form-label">Id</label>
+						<input type="hidden" name="id" id="id" class="form-control" required value="<?php echo $id?>">
+					</div>
 					<div class="col">
-						<label for="id_update" class="form-label">Nombre</label>
+						<label for="nombre" class="form-label">Nombre</label>
 						<input type="texto" name="nombre" id="nombre" class="form-control" required value="<?php echo $nombre?>">
 					</div>
                     <div class="col">
-						<label for="id_update" class="form-label">Fecha</label>
+						<label for="fecha" class="form-label">Fecha</label>
 						<input type="texto" name="fecha" id="fecha" class="form-control" required value="<?php echo $fecha?>">
 					</div>
                     <div class="col">
-						<label for="id_update" class="form-label">Hora</label>
+						<label for="hora" class="form-label">Hora</label>
 						<input type="texto" name="hora" id="hora" class="form-control" required value="<?php echo $hora?>">
 					</div>
                     <div class="col">
-						<label for="id_update" class="form-label">Lugar</label>
+						<label for="lugar" class="form-label">Lugar</label>
 						<input type="texto" name="lugar" id="lugar" class="form-control" required value="<?php echo $lugar?>">
 					</div>
 					<div class="col">
-						<label for="nuevo_nombre" class="form-label">Información</label>
+						<label for="informacion" class="form-label">Información</label>
 						<input type="text" name="informacion" id="informacion" class="form-control" required value="<?php echo $informacion?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Categoría</label>
+						<label for="categoria" class="form-label">Categoría</label>
 						<input type="text" name="categoria" id="categoria" class="form-control" required value="<?php echo $categoria?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Invitados</label>
+						<label for="invitados" class="form-label">Invitados</label>
 						<input type="text" name="invitados" id="invitados" class="form-control" required value="<?php echo $invitados?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Precio</label>
+						<label for="precio" class="form-label">Precio</label>
 						<input type="text" name="precio" id="precio" class="form-control" required value="<?php echo $precio?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Imagen</label>
+						<label for="imagen" class="form-label">Imagen</label>
 						<input type="text" name="imagen" id="iamgen" class="form-control" required value="<?php echo $imagen?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Responsable</label>
+						<label for="responsable" class="form-label">Responsable</label>
 						<input type="text" name="responsable" id="responsable" class="form-control" required value="<?php echo $responsable?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Capacidad</label>
+						<label for="capacidad" class="form-label">Capacidad</label>
 						<input type="text" name="capacidad" id="capacidad" class="form-control" required value="<?php echo $capacidad?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Contacto</label>
+						<label for="contacto" class="form-label">Contacto</label>
 						<input type="text" name="contacto" id="contacto" class="form-control" required value="<?php echo $contacto?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Estado</label>
+						<label for="estado" class="form-label">Estado</label>
 						<input type="text" name="estado" id="estado" class="form-control" required value="<?php echo $estado?>">
 					</div>
                     <div class="col">
-						<label for="nuevo_nombre" class="form-label">Tipo de Evento</label>
+						<label for="tipo_de_evento" class="form-label">Tipo de Evento</label>
 						<input type="text" name="tipo_de_evento" id="tipo_de_evento" class="form-control" required value="<?php echo $tipo_de_evento?>">
 					</div>
 						<input type="submit" name="update" value="Actualizar">
@@ -117,4 +147,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
 		</div>
     
 </body>
-</html>
+</html> 
