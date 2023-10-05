@@ -9,6 +9,8 @@
 <body>
     <div class="container mt-5">
         <h2>Editar Evento</h2>
+        <a pt="2" class="btn btn-primary" href="paanelactualiar_borrar.php">Volver</a>
+  
         <?php
         // Verificar si se ha pasado un ID válido a través de la URL
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -94,7 +96,7 @@
             // Cerrar la conexión a la base de datos
             $conn->close();
         } else {
-          
+      
         }
 
         // Procesar la actualización cuando se envíe el formulario
