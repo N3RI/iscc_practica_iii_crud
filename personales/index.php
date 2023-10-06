@@ -40,7 +40,7 @@
 		<div class="col">
 			<a href="rojas_marcos/index.php"></a>
 		</div>
-		<div class="col">Apellido y Nombre</div>
+		<div class="col"><a href="Cardozo_Mateo/index.php" target= "_blank"> Cardozo Mateo</a></div>
 		<div class="col">Apellido y Nombre</div>
 		<div class="col">Apellido y Nombre</div>
 	</div>
