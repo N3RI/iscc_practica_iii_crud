@@ -73,10 +73,7 @@
             ["img" => "img/img4.jpg", "titulo" => "LA ESTACIÓN", "enlace" => "laestacion.html"],
             ["img" => "img/img5.jpg", "titulo" => "LO DEL VIEJO", "enlace" => "lodelviejo.html"],
             ["img" => "img/img5.jpg", "titulo" => "TERCER TIEMPO", "enlace" => "tercertiempo.html"],
-<<<<<<< HEAD
-=======
             
->>>>>>> 7d56f99e4cacdec0aa70b2739d5f561ca8696008
         ];
 
         foreach ($tarjetas as $tarjeta) {

@@ -4,12 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Página</title>
+    <style>
+        /* Estilos para la tabla */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Estilos para el botón */
+        .btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para el encabezado */
+        h2 {
+            text-align: center;
+        }
+        
+        /* Estilos para el contenedor */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Estilos para centrar el botón */
+        .center-btn {
+            text-align: center;
+            margin-top: 20px; /* Ajusta este valor según sea necesario */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2>Lista de Canchas</h2>
-        <table class="table table-bordered">
-        
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -54,7 +100,11 @@
                 ?>
             </tbody>
         </table>
+        <div class="center-btn">
         <a href="formulario.html" class="btn btn-primary">Ir al Formulario</a>
+        <a href="index.php" class="btn btn-primary">Ir al Inicio</a>
+        </div>
+        
     </div>
 </body>
 </html>

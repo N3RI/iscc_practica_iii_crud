@@ -7,86 +7,102 @@
 
     <title>Formulario de Canchas</title>
 </head>
+
 <body>
     <div class="container">
         <h1>Formulario de Canchas</h1>
-        
+
         <h2>Registrar Cancha</h2>
-<form action="agregar_cancha.php" method="POST" class="form">
-    <div class="form-group">
-        <label for="nombre">Nombre de la Cancha:</label>
-        <input type="text" name="nombre" id="nombre" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="direccion">Dirección:</label>
-        <input type="text" name="direccion" id="direccion" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="ciudad">Ciudad:</label>
-        <input type="text" name="ciudad" id="ciudad" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="provincia">Provincia:</label>
-        <input type="text" name="provincia" id="provincia" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="superficie">Superficie:</label>
-        <input type="text" name="superficie" id="superficie" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="contacto">Contacto:</label>
-        <input type="text" name="contacto" id="contacto" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="correo">Correo:</label>
-        <input type="text" name="correo" id="correo" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="horario">Horario:</label>
-        <input type="text" name="horario" id="horario" class="input-field">
-    </div>
-    <div class="form-group">
-        <label for="servicio">Servicio:</label>
-        <input type="text" name="servicio" id="servicio" class="input-field">
-    </div>
-    <input type="submit" value="Registrar Cancha" class="btn">
-</form>
         <form action="agregar_cancha.php" method="POST" class="form">
+            <div class="form-group">
+                <label for="nombre">Nombre de la Cancha:</label>
+                <input type="text" name="nombre" id="nombre" class="input-field" maxlength="15" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" class="input-field" required>
+            </div>
+            <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <select name="ciudad" id="ciudad" class="input-field" required>
+                    <option value="opcion1">Curuzu Cuatia</option>
+                    <option value="opcion2">Sauce</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia:</label>
+                <select name="provincia" id="provincia" class="input-field" required>
+                    <option value="opcion1">Corrientes</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="superficie">Superficie:</label>
+                <select name="superficie" id="superficie" class="input-field" required>
+                    <option value="cesped_natural">Césped Natural</option>
+                    <option value="cesped_artificial">Césped Artificial</option>
+                    <option value="tierra_batida">Tierra Batida</option>
+                    <option value="pista_madera">Pista de Madera</option>
+                    <option value="concreto">Concreto</option>
+                    <option value="arena">Arena</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="contacto">Contacto:</label>
+                <input type="text" name="contacto" id="contacto" class="input-field" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" name="correo" id="correo" class="input-field" required
+                    pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+            </div>
+            <div class="form-group">
+                <label for="horario">Horario:</label>
+                <input type="text" name="horario" id="horario" class="input-field" required>
+            </div>
+            <div class="form-group">
+                <label for="servicio">Servicio:</label>
+                <input type="text" name="servicio" id="servicio" class="input-field" required>
+            </div>
+            <input type="submit" value="Registrar Cancha" class="btn">
         </form>
-        <form action="actualizar_cancha.php" method="POST" class="form">
-            <h2>Actualizar Cancha por ID</h2>
+
+        <h2>Actualizar Cancha por ID</h2>
         <form action="actualizar_cancha.php" method="POST" class="form">
             <div class="form-group">
                 <label for="id">ID de la Cancha:</label>
-                <input type="text" name="id" id="id" class="input-field">
+                <input type="text" name="id" id="id" class="input-field" required>
             </div>
             <div class="form-group">
                 <label for="nuevo_nombre">Nuevo Nombre:</label>
-                <input type="text" name="nuevo_nombre" id="nuevo_nombre" class="input-field">
+                <input type="text" name="nuevo_nombre" id="nuevo_nombre" class="input-field" required>
             </div>
             <div class="form-group">
                 <label for="nuevo_tipo">Nuevo Tipo:</label>
-                <input type="text" name="nuevo_tipo" id="nuevo_tipo" class="input-field">
+                <input type="text" name="nuevo_tipo" id="nuevo_tipo" class="input-field" required>
             </div>
             <div class="form-group">
                 <label for="nueva_direccion">Nueva Dirección:</label>
-                <input type="text" name="nueva_direccion" id="nueva_direccion" class="input-field">
+                <input type="text" name="nueva_direccion" id="nueva_direccion" class="input-field" required>
             </div>
             <input type="submit" value="Actualizar" class="btn">
         </form>
-        </form>
 
+        <h2>Eliminar Cancha por Nombre</h2>
         <form action="eliminar_cancha.php" method="POST" class="form">
-            <h2>Eliminar Cancha por Nombre</h2>
-            <form action="eliminar_cancha.php" method="POST" class="form">
-                <div class="form-group">
-                    <label for="nombre_eliminar">Nombre de la Cancha:</label>
-                    <input type="text" name="nombre_eliminar" id="nombre_eliminar" class="input-field">
-                </div>
-                <input type="submit" value="Eliminar" class="btn">
-            </form>
+            <div class="form-group">
+                <label for="nombre_eliminar">Nombre de la Cancha:</label>
+                <input type="text" name="nombre_eliminar" id="nombre_eliminar" class="input-field" required>
+            </div>
+            <input type="submit" value="Eliminar" class="btn">
         </form>
-        <a href="index.php" class="btn">Ir a la Página de Inicio</a>
+        <div>
+            <a href="index.php" class="btn btn-primary mt-4">Ir a la Página de Inicio</a>
+            <a href="tabla.php" class="btn btn-primary mt-4">Ir a la Tabla de Registro</a>
+        </div>
     </div>
+
 </body>
+
 </html>
