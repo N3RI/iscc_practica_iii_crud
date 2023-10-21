@@ -101,7 +101,7 @@
             </tbody>
         </table>
         <div class="center-btn">
-        <a href="formulario.html" class="btn btn-primary">Ir al Formulario</a>
+        <a href="formulario.php" class="btn btn-primary">Ir al Formulario</a>
         <a href="index.php" class="btn btn-primary">Ir al Inicio</a>
         </div>
         
