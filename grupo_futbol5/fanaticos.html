@@ -20,7 +20,7 @@
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand">
-                <img src="img/futbol5.jpg" alt="Logo" width="40" height="40">
+                <img src="img/pelota.png" alt="Logo" width="40" height="40">
                 F5DEPORTES - FANATICOS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -68,7 +68,7 @@
         </div>
     </nav>
 
-    <div class="container mt-3 p-2"> 
+    <div class="container mt-3 p-2">
         <div class="mt-5">
             <h3><strong>Curuzu Cuatia, Corrientes, Argentina - Fanaticos</strong></h3>
         </div>
@@ -171,7 +171,6 @@
                             aria-labelledby="headingServicios" data-bs-parent="#accordionServicios">
                             <div class="accordion-body">
                                 <p>Baño</p>
-                                <p>kincho</p>
                             </div>
                         </div>
                     </div>
@@ -190,7 +189,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <script src="fanaticos.js"></script>
+    <script>
+        var map = L.map('map').setView([-29.788259, -58.059816], 17); 
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var marker = L.marker([-29.788259, -58.059816]).addTo(map);
+        marker.bindPopup("Fanaticos").openPopup();
+
+    </script>
 </body>
 
 </html>

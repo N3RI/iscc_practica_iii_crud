@@ -15,8 +15,8 @@
         <h2>Registrar Cancha</h2>
         <form action="agregar_cancha.php" method="POST" class="form">
             <div class="form-group">
-                <label for="nombre">Nombre de la Cancha:</label>
-                <input type="text" name="nombre" id="nombre" class="input-field" maxlength="15" required>
+                <label for="nombrecancha">Nombre de la Cancha:</label>
+                <input type="text" name="nombrecancha" id="nombrecancha" class="input-field" maxlength="15" required>
             </div>
             <div class="form-group">
                 <label for="direccion">Dirección:</label>
@@ -25,15 +25,15 @@
             <div class="form-group">
                 <label for="ciudad">Ciudad:</label>
                 <select name="ciudad" id="ciudad" class="input-field" required>
-                    <option value="opcion1">Curuzu Cuatia</option>
-                    <option value="opcion2">Sauce</option>
+                    <option value="Curuzu Cuatia">Curuzu Cuatia</option>
+                    <option value="Sauce">Sauce</option>
 
                 </select>
             </div>
             <div class="form-group">
                 <label for="provincia">Provincia:</label>
                 <select name="provincia" id="provincia" class="input-field" required>
-                    <option value="opcion1">Corrientes</option>
+                    <option value="Corrientes">Corrientes</option>
 
                 </select>
             </div>
@@ -62,8 +62,8 @@
                 <input type="text" name="horario" id="horario" class="input-field" required>
             </div>
             <div class="form-group">
-                <label for="servicio">Servicio:</label>
-                <input type="text" name="servicio" id="servicio" class="input-field" required>
+                <label for="servicios">Servicio:</label>
+                <input type="text" name="servicios" id="servicios" class="input-field" required>
             </div>
             <input type="submit" value="Registrar Cancha" class="btn">
         </form>
@@ -71,16 +71,29 @@
         <h2>Actualizar Cancha por ID</h2>
         <form action="actualizar_cancha.php" method="POST" class="form">
             <div class="form-group">
-                <label for="id">ID de la Cancha:</label>
-                <input type="text" name="id" id="id" class="input-field" required>
+                <label for="id_actualizar">Seleccionar Cancha a Actualizar:</label>
+                <select name="id_actualizar" id="id_actualizar" class="input-field" required>
+                    <?php
+            $conexion = mysqli_connect("localhost", "root", "", "bdd_canchas");
+            
+            if (mysqli_connect_errno()) {
+                die("La conexión a la base de datos falló: " . mysqli_connect_error());
+            }
+            
+            $consulta = "SELECT id, nombrecancha FROM canchas";
+            $resultado = mysqli_query($conexion, $consulta);
+            
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                echo '<option value="' . $fila['id'] . '">' . $fila['nombrecancha'] . '</option>';
+            }
+            
+            mysqli_close($conexion);
+            ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="nuevo_nombre">Nuevo Nombre:</label>
                 <input type="text" name="nuevo_nombre" id="nuevo_nombre" class="input-field" required>
-            </div>
-            <div class="form-group">
-                <label for="nuevo_tipo">Nuevo Tipo:</label>
-                <input type="text" name="nuevo_tipo" id="nuevo_tipo" class="input-field" required>
             </div>
             <div class="form-group">
                 <label for="nueva_direccion">Nueva Dirección:</label>
@@ -89,14 +102,33 @@
             <input type="submit" value="Actualizar" class="btn">
         </form>
 
+
         <h2>Eliminar Cancha por Nombre</h2>
-        <form action="eliminar_cancha.php" method="POST" class="form">
-            <div class="form-group">
-                <label for="nombre_eliminar">Nombre de la Cancha:</label>
-                <input type="text" name="nombre_eliminar" id="nombre_eliminar" class="input-field" required>
-            </div>
-            <input type="submit" value="Eliminar" class="btn">
-        </form>
+<form action="eliminar_cancha.php" method="POST" class="form">
+    <div class="form-group">
+        <label for="nombre_eliminar">Selecciona una Cancha para Eliminar:</label>
+        <select name="nombre_eliminar" id="nombre_eliminar" class="input-field" required>
+            <?php
+            $conexion = mysqli_connect("localhost", "root", "", "bdd_canchas");
+            
+            if (mysqli_connect_errno()) {
+                die("La conexión a la base de datos falló: " . mysqli_connect_error());
+            }
+            
+            $consulta = "SELECT nombrecancha FROM canchas";
+            $resultado = mysqli_query($conexion, $consulta);
+            
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                echo '<option value="' . $fila['nombrecancha'] . '">' . $fila['nombrecancha'] . '</option>';
+            }
+            
+            mysqli_close($conexion);
+            ?>
+        </select>
+    </div>
+    <input type="submit" value="Eliminar" class="btn">
+</form>
+
         <div>
             <a href="index.php" class="btn btn-primary mt-4">Ir a la Página de Inicio</a>
             <a href="tabla.php" class="btn btn-primary mt-4">Ir a la Tabla de Registro</a>
