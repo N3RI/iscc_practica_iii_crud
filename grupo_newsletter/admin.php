@@ -42,7 +42,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fecha . "</td>";
     echo '<form action="actualizar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
-    <td><button type="submit" class="btn btn-primary" name="update">Update</button></td>
+    <td><button type="submit" class="btn btn-primary" name="actualizar">Update</button></td>
   </form>';
     echo '<form action="eliminar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
@@ -82,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete"])) {
 mysqli_close($conexion);
 ?>
 <a href="index.php" class="btn btn-primary">Ir a index</a>
+<a href="redactar_correo.php" class="btn btn-primary">Click aquí para redactar un email</a>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
