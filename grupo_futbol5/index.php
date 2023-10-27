@@ -1,3 +1,31 @@
+<?php
+$conexion = mysqli_connect("localhost", "root", "", "bdd_canchas");
+
+if (mysqli_connect_errno()) {
+    die("La conexión a la base de datos falló: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["agregar"])) {
+        $img = $_POST["img"];
+        $titulo = $_POST["titulo"];
+        $enlace = $_POST["enlace"];
+        
+        $sql = "INSERT INTO canchas (nombrecancha, direccion, ciudad, provincia, superficie, contacto, correo, horario, servicios) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("sssssssss", $titulo, $direccion, $ciudad, $provincia, $superficie, $contacto, $correo, $horario, $servicios);
+
+        if ($stmt->execute()) {
+            header("Location: index.php");
+        } else {
+            echo "Error al agregar la tarjeta.";
+        }
+    }
+}
+
+$consulta = "SELECT * FROM canchas";
+$resultado = mysqli_query($conexion, $consulta);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,7 +47,7 @@
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand">
-                <img src="img/futbol5.jpg" alt="Logo" width="40" height="40">
+                <img src="img/pelota.png" alt="Logo" width="40" height="40">
                 F5DEPORTES - CANCHAS DE FUTBOL 5
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -37,7 +65,10 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="formulario.php">Registrar Cancha</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -60,91 +91,59 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h2>Lista de Canchas</h2>
-        
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre de la Cancha</th>
-                    <th>Dirección</th>
-                    <th>Ciudad</th>
-                    <th>Provincia</th>
-                    <th>Superficie</th>
-                    <th>Contacto</th>
-                    <th>Correo</th>
-                    <th>Horario</th>
-                    <th>Servicios</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $conexion = mysqli_connect("localhost", "root", "", "bdd_canchas");
-
-                if (mysqli_connect_errno()) {
-                    die("La conexión a la base de datos falló: " . mysqli_connect_error());
-                }
-
-                $consulta = "SELECT * FROM canchas";
-                $resultado = mysqli_query($conexion, $consulta);
-
-                while ($fila = mysqli_fetch_assoc($resultado)) {
-                    echo "<tr>";
-                    echo "<td>" . $fila['id'] . "</td>";
-                    echo "<td>" . $fila['nombrecancha'] . "</td>";
-                    echo "<td>" . $fila['direccion'] . "</td>";
-                    echo "<td>" . $fila['ciudad'] . "</td>";
-                    echo "<td>" . $fila['provincia'] . "</td>";
-                    echo "<td>" . $fila['superficie'] . "</td>";
-                    echo "<td>" . $fila['contacto'] . "</td>";
-                    echo "<td>" . $fila['correo'] . "</td>";
-                    echo "<td>" . $fila['horario'] . "</td>";
-                    echo "<td>" . $fila['servicios'] . "</td>";
-                    echo "</tr>";
-                }
-
-                mysqli_close($conexion);
-                ?>
-            </tbody>
-        </table>
-        <a href="formulario.html" class="btn btn-primary">Ir al Formulario</a>
-    </div>
-
     <div class="container mt-5 p-4">
-    <div class="row justify-content-center row-cols-1 row-cols-md-3 g-4">
-        <?php
-        $tarjetas = [
-            ["img" => "img/img1.jpg", "titulo" => "FANATICOS", "enlace" => "fanaticos.html"],
-            ["img" => "img/img2.jpg", "titulo" => "BARRIO NORTE", "enlace" => "barrionorte.html"],
-            ["img" => "img/img3.jpg", "titulo" => "KRISTAL", "enlace" => "kristal.html"],
-            ["img" => "img/img4.jpg", "titulo" => "LA ESTACIÓN", "enlace" => "laestacion.html"],
-            ["img" => "img/img5.jpg", "titulo" => "LO DEL VIEJO", "enlace" => "lodelviejo.html"],
-            ["img" => "img/img5.jpg", "titulo" => "TERCER TIEMPO", "enlace" => "tercertiempo.html"],
-<<<<<<< HEAD
-=======
-            
->>>>>>> 7d56f99e4cacdec0aa70b2739d5f561ca8696008
-        ];
+       <div class="row justify-content-center row-cols-1 row-cols-md-3 g-4">
+       <?php
+            $conexion = mysqli_connect("localhost", "root", "", "bdd_canchas");
 
-        foreach ($tarjetas as $tarjeta) {
-            echo '<div class="col">';
-            echo '<div class="card text-bg-dark">';
-            echo '<div class="card-img-container">';
-            echo '<img src="' . $tarjeta['img'] . '" class="card-img" alt="...">';
-            echo '<div class="card-title-overlay">';
-            echo '<h5>' . $tarjeta['titulo'] . '</h5>';
-            echo '</div>';
-            echo '</div>';
-            echo '<div class="card-footer d-flex justify-content-end">';
-            echo '<a href="' . $tarjeta['enlace'] . '" class="btn btn-primary">Ver más</a>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-        }
-        ?>
+            if (mysqli_connect_errno()) {
+                die("La conexión a la base de datos falló: " . mysqli_connect_error());
+            }
+
+            $consulta = "SELECT * FROM canchas";
+            $resultado = mysqli_query($conexion, $consulta);
+
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                echo '<div class="col-md-4 mb-4">';
+                echo '<div class="card">';
+                echo '<img src="img/futbol5.jpg" class="card-img-top" alt="Imagen de la Cancha">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $fila['nombrecancha'] . '</h5>';
+                echo '<p class="card-text">' . $fila['direccion'] . ', ' . $fila['ciudad'] . '</p>';
+                echo '<a href="pagina_destino.php?id=' . $fila['id'] . '" class="btn btn-primary">Ver Detalles</a>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+
+            mysqli_close($conexion);
+
+            $tarjetas = [
+                ["img" => "img/img1.jpg", "titulo" => "FANATICOS", "direccion" => "Calle Ejemplo, Ciudad Ejemplo", "enlace" => "fanaticos.html"],
+                ["img" => "img/img2.jpg", "titulo" => "BARRIO NORTE", "direccion" => "Otra Calle, Otra Ciudad", "enlace" => "barrionorte.html"],
+                ["img" => "img/img3.jpg", "titulo" => "KRISTAL", "direccion" => "Calle de Kristal, Otra Ciudad", "enlace" => "kristal.html"],
+                ["img" => "img/img4.jpg", "titulo" => "LA ESTACIÓN", "direccion" => "Estación, Ciudad Estación", "enlace" => "laestacion.html"],
+                ["img" => "img/img5.jpg", "titulo" => "LO DEL VIEJO", "direccion" => "Vieja Calle, Vieja Ciudad", "enlace" => "lodelviejo.html"],
+                ["img" => "img/img5.jpg", "titulo" => "TERCER TIEMPO", "direccion" => "Tercer Calle, Tercer Ciudad", "enlace" => "tercertiempo.html"],
+            ];            
+
+            foreach ($tarjetas as $tarjeta) {
+                echo '<div class="col-md-4 mb-4">';
+                echo '<div class="card">';
+                echo '<img src="' . $tarjeta['img'] . '" class="card-img-top" alt="Imagen de la Cancha">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $tarjeta['titulo'] . '</h5>';
+                echo '<p class="card-text">' . $tarjeta['direccion'] . '</p>';
+                echo '<a href="' . $tarjeta['enlace'] . '" class="btn btn-primary">Ver Detalles</a>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
+        </div>
     </div>
-</div>
+
+
 
     <footer>
         <p class="text-center">&copy; 2023 F5Deportes. Todos los derechos reservados.</p>
