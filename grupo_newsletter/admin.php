@@ -1,9 +1,9 @@
 <?php
 require("config.php");
-// Seleccionar todos los registros de la tabla 'alumnos'
+
 $consulta = "SELECT * FROM alumnos";
 $resultado = mysqli_query($conexion, $consulta);
-// Mostrar los datos
+
 echo "<table class='table'>";
 echo "<thead class='thead-dark'>";
 echo "<tr>";
@@ -16,7 +16,7 @@ echo "<th>email</th>";
 echo "<th>carrera</th>";
 echo "<th>estado</th>";
 echo "<th>fecha</th>";
-echo '<th>Acciones</th>'; // Agregamos una columna extra para los botones de acción
+echo '<th>Acciones</th>'; 
 echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
@@ -58,20 +58,20 @@ echo "</table>";
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete"])) {
     $id = $_POST["id"];
 
-    // Validar la entrada
+   
     if (!empty($id)) {
-        // Crear una declaración preparada
+       
         $stmt = $conexion->prepare("DELETE FROM alumnos WHERE id=?");
         $stmt->bind_param("i", $id);
 
-        // Ejecutar la declaración preparada
+       
         if ($stmt->execute()) {
             echo "Registro eliminado con éxito. \n";
         } else {
             echo "Error: " . $stmt->error;
         }
 
-        // Cerrar la declaración preparada
+      
         $stmt->close();
     } else {
         echo "Datos de entrada inválidos.";
