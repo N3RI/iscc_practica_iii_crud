@@ -17,7 +17,7 @@
     <nav class="navbar bg-custom">
         <div class="container-fluid">
             <img src="img/logo.png" alt="Bootstrap" class="mx-auto d-block">
-            <button class="btn btn-primary" onclick="window.location.href = 'admin.php';">Ir a admin</button>
+           
         </div>
     </nav>
 
@@ -96,7 +96,7 @@
             <option value="Capacitación en Francés">Capacitación en Francés</option>
             <option value="Capacitación en Dibujo y Pintura">Capacitación en Dibujo y Pintura</option>
         </select>
-        
+
 
         <div class="form-check">
             <button type="submit" class="btn btn-primary mt-3" name="create" >Suscribirse</button>
