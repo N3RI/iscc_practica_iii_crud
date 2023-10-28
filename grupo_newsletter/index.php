@@ -96,12 +96,7 @@
             <option value="Capacitación en Francés">Capacitación en Francés</option>
             <option value="Capacitación en Dibujo y Pintura">Capacitación en Dibujo y Pintura</option>
         </select>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-            <label class="form-check-label" for="flexCheckIndeterminate">
-                Acepto terminos y condiciones.
-            </label>
-        </div>
+        
 
         <div class="form-check">
             <button type="submit" class="btn btn-primary mt-3" name="create" >Suscribirse</button>
