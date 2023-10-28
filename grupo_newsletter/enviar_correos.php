@@ -17,43 +17,12 @@ if ($result->num_rows > 0) {
     $asunto = $_POST['asunto'];
     $mensaje = $_POST['mensaje'];
 
-    // Adjuntar archivo
-    $archivo_nombre = $_FILES['archivo']['name'];
-    $archivo_temp = $_FILES['archivo']['tmp_name'];
-    $archivo_tipo = $_FILES['archivo']['type'];
-
-    // Verifica si se subió un archivo
-    if(!empty($archivo_nombre)) {
-        $archivo_adjunto = chunk_split(base64_encode(file_get_contents($archivo_temp)));
-        $boundary = md5(date('r', time()));
-
-        $headers = "From: newsletter@iscc.com\r\n";
-        $headers .= "Reply-To: newsletter@iscc.com\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
-
-        $mensaje = "--$boundary\r\n";
-        $mensaje .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
-        $mensaje .= "Content-Transfer-Encoding: base64\r\n\r\n";
-        $mensaje .= chunk_split(base64_encode($mensaje));
-
-        $mensaje .= "\r\n--$boundary\r\n";
-        $mensaje .= "Content-Type: $archivo_tipo; name=\"$archivo_nombre\"\r\n";
-        $mensaje .= "Content-Disposition: attachment; filename=\"$archivo_nombre\"\r\n";
-        $mensaje .= "Content-Transfer-Encoding: base64\r\n";
-        $mensaje .= "X-Attachment-Id: " . rand(1000, 99999) . "\r\n\r\n";
-        $mensaje .= $archivo_adjunto;
-        $mensaje .= "\r\n--$boundary--\r\n";
-
-    } else {
-        // Si no se adjunta un archivo
+    // Enviar correos a los destinatarios
+    foreach ($destinatarios as $destinatario) {
         $headers = "From: newsletter@iscc.com\r\n";
         $headers .= "Reply-To: newsletter@iscc.com\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
-    }
 
-    // Enviar correos a los destinatarios
-    foreach ($destinatarios as $destinatario) {
         mail($destinatario, $asunto, $mensaje, $headers);
     }
 
