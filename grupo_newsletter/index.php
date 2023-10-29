@@ -14,12 +14,9 @@
 <body>
 
 
-    <nav class="navbar bg-custom">
-        <div class="container-fluid">
-            <img src="img/logo.png" alt="Bootstrap" class="mx-auto d-block">
-           
-        </div>
-    </nav>
+<?php 
+    include "header.php"
+?>
 
     <div class="container-fluid">
 
@@ -103,12 +100,9 @@
         </div>
     </form>
 
-    <div class="container-fluid text-center text-white mt-3 p-2 bg-custom">
-        <p>Made with love by Joan Mauri & Eduardo López <a href="admin.php" target="_blank"
-                rel="noopener noreferrer">Admin</a></p>
-    </div>
-
-
+   <?php 
+    include "footer.php"
+?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
