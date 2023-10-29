@@ -5,10 +5,10 @@
 //  error_reporting(E_ALL);
 
 // Parámetros de conexión a la base de datos
-$host = "localhost"; 
-$usuario = "root"; // $usuario = "usuario";
-$contraseña = ""; // $contraseña = "contraseña";
-$boletin = "boletin";
+$host = "104.156.59.38"; 
+$usuario = "ifdcuruzu_newsletter"; // $usuario = "usuario";
+$contraseña = "4oijWd#tRh*@"; // $contraseña = "contraseña";
+$boletin = "ifdcuruzu_gruponewsletter";
 
 // Crear una nueva conexión a la base de datos
 $conexion = new mysqli($host, $usuario, $contraseña, $boletin);

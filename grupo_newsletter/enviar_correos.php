@@ -21,6 +21,7 @@ if ($result->num_rows > 0) {
     foreach ($destinatarios as $destinatario) {
         $headers = "From: newsletter@iscc.com\r\n";
         $headers .= "Reply-To: newsletter@iscc.com\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
 
         mail($destinatario, $asunto, $mensaje, $headers);
