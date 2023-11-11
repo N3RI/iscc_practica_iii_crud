@@ -15,7 +15,8 @@
 
 
 <?php 
-    include "header.php"
+
+    include "header.php";
 ?>
 
     <div class="container-fluid">
@@ -101,8 +102,38 @@
     </form>
 
    <?php 
-    include "footer.php"
+    include "footer.php";
+    include "auth.php";
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
+    // Verifica las credenciales cuando se envía el formulario de inicio de sesión
+    $usuario = $_POST["usuario"];
+    $contrasena = $_POST["contrasena"];
+
+    if (validarCredenciales($usuario, $contrasena)) {
+        // Inicio de sesión exitoso, puedes redirigir a la página de administrador o realizar otras acciones
+        echo "Inicio de sesión exitoso. Redireccionando a la página de administrador...";
+        // Puedes agregar una redirección aquí si lo deseas
+    } else {
+        echo "Credenciales incorrectas. Inténtalo de nuevo.";
+    }
+}
 ?>
+
+<form class="container-fluid w-50 text-center" action="" method="POST">
+    <!-- Agrega más campos según sea necesario -->
+    <div class="mb-3">
+        <label for="usuario" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuario" required>
+    </div>
+    <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+    </div>
+    <div class="form-check">
+        <button type="submit" class="btn btn-primary mt-3" name="login">Iniciar Sesión como ADMIN</button>
+    </div>
+</form>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
