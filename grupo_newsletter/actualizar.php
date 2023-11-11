@@ -1,7 +1,22 @@
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</html>
+
 <?php
 
 require("config.php");
 
+$id = 1;
 $nuevoNombre = "";
 $nuevoApellido = "";
 $nuevoDNI = "";
@@ -29,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["actualizar"])) {
 
 // si aprieto el botón Update
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
-   
+    $id = $_POST["id"];
     $nuevoNombre = $_POST["nuevo_nombre"];
     $nuevoApellido = $_POST["nuevo_apellido"];
     $nuevoDNI = $_POST["nuevo_dni"];
@@ -41,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     // Validar la entrada
     if (!empty($nuevoApellido) && !empty($nuevoNombre) && !empty($nuevoEmail)) {
         // Crear una declaración preparada
-        $stmt = $conexion->prepare("UPDATE alumnos SET nombre=?, apellido=?, dni=?, genero=?, email=?, carrera=? WHERE id=?");
+        $stmt = $conexion->prepare("UPDATE alumnos SET nombre=?, apellido=?, dni=?, genero=?, email=?, carrera=? WHERE id=$id");
         $stmt->bind_param("ssssssi", $nuevoNombre, $nuevoApellido, $nuevoDNI, $nuevoGenero, $nuevoEmail, $nuevoCarrera , $id);
 
         // Ejecutar la declaración preparada
@@ -73,7 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     <title>Document</title>
 </head>
 <body>
-    <h1>
+
+<?php 
+    include "header.php"
+?>
+
+    <h1 class="text-center">
         Actualizar registro
     </h1>
 
@@ -98,22 +118,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
         <label for="nuevo_genero" class="form-label">Género</label>
         <div class="mb-3">
 
-            <div class="form-check  form-check-inline ">
+            <div class="form-check form-check-inline ">
                 <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="Femenino">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <label class="form-check-label" for="nuevo_genero">
                     Femenino
                 </label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="Masculino" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
+                <label class="form-check-label" for="nuevo_genero">
                     Masculino
                 </label>
             </div>
 
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="X" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
+                <label class="form-check-label" for="nuevo_genero">
                     No Binarie (X)
                 </label>
             </div>
@@ -147,6 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
             <button type="submit" class="btn btn-primary mt-3" name="update" >Suscribirse</button>
         </div>
     </form>
+
+    <?php 
+    include "footer.php"
+?>
 </body>
 </html>
 
