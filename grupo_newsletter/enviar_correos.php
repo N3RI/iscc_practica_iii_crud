@@ -52,7 +52,15 @@ if ($result->num_rows > 0) {
     include "footer.php";
 
 } else {
-    echo "No hay destinatarios en la base de datos.";
+    include "header.php";
+    echo '<div style="background-color: #4caf50; color: #ff0000; padding: 10px; text-align: center; font-size: 18px;">No hay destinatarios en la Base de datos.</div>';
+    echo '<div class="text-center mt-4">';
+    echo '<div style="display: flex; justify-content: center; margin-top:1rem;">';
+    echo '<a href="admin.php" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; font-size: 16px; margin-right: 10px;">Volver a Admin</a>';
+    echo '<a href="redactar_correo2.php" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; font-size: 16px;">Ir a Redactar Correo</a>';
+    echo '</div>';
+    echo '</div>';
+    include "footer.php";
 }
 
 $conexion->close();
