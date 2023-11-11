@@ -16,7 +16,7 @@
 
 require("config.php");
 
-$id = 1;
+$id = "";
 $nuevoNombre = "";
 $nuevoApellido = "";
 $nuevoDNI = "";
