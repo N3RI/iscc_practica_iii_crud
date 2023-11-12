@@ -29,7 +29,7 @@ $nuevaCarrera = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["actualizar"])) {
 	$id = $_POST["id"];
 
-	$stmt = $conexion->prepare("SELECT ID, nombre, apellido, dni, genero, email, carrera FROM alumnos WHERE id=?");
+	$stmt = $conexion->prepare("SELECT ID, nombre, apellido, dni, genero, email, carrera FROM alumnos WHERE id=$id");
 	$stmt->bind_param("i", $id);
 
 	// Ejecutar la declaración preparada
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     // Validar la entrada
     if (!empty($nuevoApellido) && !empty($nuevoNombre) && !empty($nuevoEmail)) {
         // Crear una declaración preparada
-        $stmt = $conexion->prepare("UPDATE alumnos SET nombre=?, apellido=?, dni=?, genero=?, email=?, carrera=? WHERE id=$id");
+        $stmt = $conexion->prepare("UPDATE alumnos SET nombre=?, apellido=?, dni=?, genero=?, email=?, carrera=? WHERE id=?");
         $stmt->bind_param("ssssssi", $nuevoNombre, $nuevoApellido, $nuevoDNI, $nuevoGenero, $nuevoEmail, $nuevoCarrera , $id);
 
         // Ejecutar la declaración preparada
