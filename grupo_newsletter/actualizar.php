@@ -12,10 +12,10 @@
         crossorigin="anonymous"></script>
 </html>
 
+
 <?php
 
 require("config.php");
-
 $id = "";
 $nuevoNombre = "";
 $nuevoApellido = "";
@@ -29,7 +29,7 @@ $nuevaCarrera = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["actualizar"])) {
 	$id = $_POST["id"];
 
-	$stmt = $conexion->prepare("SELECT ID, nombre, apellido, dni, genero, email, carrera FROM alumnos WHERE id=$id");
+	$stmt = $conexion->prepare("SELECT ID, nombre, apellido, dni, genero, email, carrera FROM alumnos WHERE ID=?");
 	$stmt->bind_param("i", $id);
 
 	// Ejecutar la declaración preparada
@@ -44,23 +44,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["actualizar"])) {
 
 // si aprieto el botón Update
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
-    $id = $_POST["id"];
+   $id = $_POST["id"];
     $nuevoNombre = $_POST["nuevo_nombre"];
     $nuevoApellido = $_POST["nuevo_apellido"];
     $nuevoDNI = $_POST["nuevo_dni"];
     $nuevoGenero = $_POST["nuevo_genero"];
     $nuevoEmail = $_POST["nuevo_email"];
-   $nuevaCarrera = $_POST["nuevo_carrera"];
+    $nuevaCarrera = $_POST["nueva_carrera"];
+  
+  echo $id;
+  echo $nuevoNombre;
+  echo $nuevoApellido;
+  echo $nuevoDNI;
+  echo $nuevoGenero;
+  echo $nuevoEmail;
+  echo $nuevaCarrera;
    
 
     // Validar la entrada
     if (!empty($nuevoApellido) && !empty($nuevoNombre) && !empty($nuevoEmail)) {
+        echo "entré";
         // Crear una declaración preparada
         $stmt = $conexion->prepare("UPDATE alumnos SET nombre=?, apellido=?, dni=?, genero=?, email=?, carrera=? WHERE id=?");
-        $stmt->bind_param("ssssssi", $nuevoNombre, $nuevoApellido, $nuevoDNI, $nuevoGenero, $nuevoEmail, $nuevoCarrera , $id);
+        $stmt->bind_param("ssssssi", $nuevoNombre, $nuevoApellido, $nuevoDNI, $nuevoGenero, $nuevoEmail, $nuevaCarrera , $id);
 
         // Ejecutar la declaración preparada
         if ($stmt->execute()) {
+		echo "ejecuté";
 					echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
 					Registro actualizado con éxito.
 					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
@@ -88,11 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
     <title>Document</title>
 </head>
 <body>
-
-<?php 
+    
+    <?php 
     include "header.php"
 ?>
-
     <h1 class="text-center">
         Actualizar registro
     </h1>
@@ -119,20 +128,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
         <div class="mb-3">
 
             <div class="form-check form-check-inline ">
-                <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="Femenino">
+                <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="Femenino" <?php if ($nuevoGenero=="Femenino") {echo " checked";} ?>>
                 <label class="form-check-label" for="nuevo_genero">
                     Femenino
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="Masculino" checked>
+                <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="Masculino" <?php if ($nuevoGenero=="Masculino") {echo " checked";} ?>>
                 <label class="form-check-label" for="nuevo_genero">
                     Masculino
                 </label>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="X" checked>
+                <input class="form-check-input" type="radio" name="nuevo_genero" id="nuevo_genero" value="X" <?php if ($nuevoGenero=="X") {echo " checked";} ?>>
                 <label class="form-check-label" for="nuevo_genero">
                     No Binarie (X)
                 </label>
@@ -144,30 +153,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update"])) {
             <input type="email" class="form-control" id="nuevo_email" name="nuevo_email" value="<?php echo $nuevoEmail; ?>">
         </div>
         <label for="nuevo_carrera" class="form-label">Carrera</label>
-        <select class="form-select" aria-label="Default select example" name="nuevo_carrera">
-            <option value="Tecnicatura Superior en Desarrollo De Software">Tecnicatura Superior en Desarrollo De Software</option>
-            <option value="Tecnicatura Superior en Infraestructura Informática">Tecnicatura Superior en Infraestructura Informática</option>
-            <option value="Tecnicatura Superior en Enfermería">Tecnicatura Superior en Enfermería</option>
-            <option value="Tecnicatura Superior en Gestión de la Producción Agropecuaria">Tecnicatura Superior en Gestión de la Producción Agropecuaria </option>
-            <option value="Tecnicatura Superior en Higiene y Seguridad">Tecnicatura Superior en Higiene y Seguridad</option>
-            <option value="Tecnicatura Superior en Comunicacion Social">Tecnicatura Superior en Comunicacion Social</option>
-            <option value="Profesorado de Artes Visuales">Profesorado de Artes Visuales </option>
-            <option value="Profesorado de Educación Inicial">Profesorado de Educación Inicial</option>
-            <option value="Profesorado de Educación Primaria">Profesorado de Educación Primaria</option>
-            <option value="Profesorado de Inglés">Profesorado de Inglés</option>
-            <option value="Profesorado de Informática">Profesorado de Informática</option>
-            <option value="Capacitación en Inglés">Capacitación en Inglés</option>
-            <option value="Capacitación en Portugués">Capacitación en Portugués</option>
-            <option value="Capacitación en Francés">Capacitación en Francés</option>
-            <option value="Capacitación en Dibujo y Pintura">Capacitación en Dibujo y Pintura</option>
+        <select class="form-select" aria-label="Default select example" name="nueva_carrera">
+            <option value="Tecnicatura Superior en Desarrollo De Software" <?php if ($nuevaCarrera=="Tecnicatura Superior en Desarrollo De Software") {echo " selected";} ?>>Tecnicatura Superior en Desarrollo De Software</option>
+            <option value="Tecnicatura Superior en Infraestructura Informática" <?php if ($nuevaCarrera=="Tecnicatura Superior en Infraestructura Informática") {echo " selected";} ?>>Tecnicatura Superior en Infraestructura Informática</option>
+            <option value="Tecnicatura Superior en Enfermería" <?php if ($nuevaCarrera=="Tecnicatura Superior en Enfermería") {echo " selected";} ?>>Tecnicatura Superior en Enfermería</option>
+            <option value="Tecnicatura Superior en Gestión de la Producción Agropecuaria" <?php if ($nuevaCarrera=="Tecnicatura Superior en Gestión de la Producción Agropecuaria") {echo " selected";} ?>>Tecnicatura Superior en Gestión de la Producción Agropecuaria </option>
+            <option value="Tecnicatura Superior en Higiene y Seguridad" <?php if ($nuevaCarrera=="Tecnicatura Superior en Higiene y Seguridad") {echo " selected";} ?>>Tecnicatura Superior en Higiene y Seguridad</option>
+            <option value="Tecnicatura Superior en Comunicacion Social" <?php if ($nuevaCarrera=="Tecnicatura Superior en Comunicacion Social") {echo " selected";} ?>>Tecnicatura Superior en Comunicacion Social</option>
+            <option value="Profesorado de Artes Visuales" <?php if ($nuevaCarrera=="Profesorado de Artes Visuales") {echo " selected";} ?>>Profesorado de Artes Visuales </option>
+            <option value="Profesorado de Educación Inicial" <?php if ($nuevaCarrera=="Profesorado de Educación Inicial") {echo " selected";} ?>>Profesorado de Educación Inicial</option>
+            <option value="Profesorado de Educación Primaria" <?php if ($nuevaCarrera=="Profesorado de Educación Primaria") {echo " selected";} ?>>Profesorado de Educación Primaria</option>
+            <option value="Profesorado de Inglés" <?php if ($nuevaCarrera=="Profesorado de Inglés") {echo " selected";} ?>>Profesorado de Inglés</option>
+            <option value="Profesorado de Informática" <?php if ($nuevaCarrera=="Profesorado de Informática") {echo " selected";} ?>>Profesorado de Informática</option>
+            <option value="Capacitación en Inglés" <?php if ($nuevaCarrera=="Capacitación en Inglés") {echo " selected";} ?>>Capacitación en Inglés</option>
+            <option value="Capacitación en Portugués" <?php if ($nuevaCarrera=="Capacitación en Portugués") {echo " selected";} ?>>Capacitación en Portugués</option>
+            <option value="Capacitación en Francés" <?php if ($nuevaCarrera=="Capacitación en Francés") {echo " selected";} ?>>Capacitación en Francés</option>
+            <option value="Capacitación en Dibujo y Pintura" <?php if ($nuevaCarrera=="Capacitación Dibujo y Pintura") {echo " selected";} ?>>Capacitación en Dibujo y Pintura</option>
         </select>
         
 
         <div class="form-check">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <button type="submit" class="btn btn-primary mt-3" name="update" >Suscribirse</button>
         </div>
     </form>
-
+    
     <?php 
     include "footer.php"
 ?>
