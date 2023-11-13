@@ -44,7 +44,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     echo "<td>" . $fecha . "</td>";
     echo '<form action="actualizar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
-    <td><button type="submit" class="btn btn-primary" name="actualizar">Update</button></td>
+    <td><button type="submit" class="btn btn-primary" name="actualizar">Actualizar</button></td>
   </form>';
     echo '<form action="eliminar.php" method="post">
     <input type="hidden" name="id" value="' . $fila['ID'] . '">
