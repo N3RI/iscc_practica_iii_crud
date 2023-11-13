@@ -1,4 +1,5 @@
 <?php
+include "header.php";
 // Verifica si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica el nombre de usuario y contraseña (en este caso, usuario: admin, contraseña: admin)
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="text-center">
 
-    <form class="form-signin" method="POST" action="">
+    <form class="form-signin container-fluid w-50" method="POST" action="">
         <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
 
         <?php if (isset($error)) { ?>
@@ -35,14 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php } ?>
 
-        <label for="inputUsuario" class="visually-hidden">Usuario</label>
-        <input type="text" id="inputUsuario" class="form-control" name="usuario" placeholder="Usuario" required autofocus>
+        <label for="inputUsuario" class="visually-hidden mb-3">Usuario</label>
+        <input type="text" id="inputUsuario" class="form-control mb-3" name="usuario" placeholder="Usuario" required autofocus>
 
-        <label for="inputContrasena" class="visually-hidden">Contraseña</label>
-        <input type="password" id="inputContrasena" class="form-control" name="contrasena" placeholder="Contraseña" required>
+        <label for="inputContrasena" class="visually-hidden mb-3">Contraseña</label>
+        <input type="password" id="inputContrasena" class="form-control mb-3" name="contrasena" placeholder="Contraseña" required>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
     </form>
 
 </body>
+<?php 
+    include "footer.php"
+?>
 </html>
